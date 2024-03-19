@@ -9,7 +9,7 @@ package com.vedha.collections.features;
  */
 public class Java14Features {
 
-    public record Person(String name, String location) {};
+    public record Person(String name, String location) {}
 
     public static void main(String[] args) {
 

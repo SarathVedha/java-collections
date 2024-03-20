@@ -12,7 +12,6 @@ public class ThreadingDemo {
         strings.add("B");
         strings.add("C");
 
-        List<String> strings1 = List.of("");
         Runnable runnable = () -> {
 
             for (int i = 0; i < 3; i++) {
@@ -26,8 +25,6 @@ public class ThreadingDemo {
 
             System.out.println(strings);
         };
-
-        TreeSet<String> strings2 = new TreeSet<>(List.of("A", "B", "C"));
 
         Runnable runnable1 = () -> {
 

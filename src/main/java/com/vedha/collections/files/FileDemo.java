@@ -44,7 +44,11 @@ public class FileDemo {
         System.out.println("file canRead: " + file3.canRead()); // true if file can be read
         System.out.println("file canWrite: " + file3.canWrite()); // true if file can be written
         System.out.println("file canExec: " + file3.canExecute()); // true if file can be executed
-        System.out.println("file delete: " + file3.delete()); // delete file
+        System.out.println("file length: " + file3.length()); // returns length of file in bytes
+
+        File renameFile = new File("D:\\NewDir\\NewDir2\\NewDir3\\NewFile2.txt");
+        System.out.println("file rename: " + file3.renameTo(renameFile)); // rename file
+        System.out.println("file delete: " + renameFile.delete()); // delete file
 
         /*
          Unit	Shortened	Capacity

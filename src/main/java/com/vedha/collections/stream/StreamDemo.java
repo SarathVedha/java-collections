@@ -248,5 +248,16 @@ public class StreamDemo {
 		String collect20 = list.stream().flatMap(Collection::stream).distinct().sorted().collect(Collectors.joining(","));
 		System.out.println(collect20);
 
+		// Sorts as per ASCII Ascending Order First A-Z and a-z
+		System.out.println();
+		List<String> a = List.of("A", "B", "C", "D", "E", "F", "a", "G", "b", "H");
+
+		List<String> list5 = a.stream().distinct().sorted().toList();
+		System.out.println(list5);
+
+
+		System.out.println();
+		String reduce = a.stream().distinct().sorted().reduce("", String::concat);
+		System.out.println(reduce);
 	}
 }

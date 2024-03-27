@@ -20,21 +20,21 @@ public class StreamDemo {
 		Stream<String> of = Stream.of("A", "B", "C");
 		of.forEach(System.out::println);
 
-		System.out.println("");
+		System.out.println();
 
 		// Collection as Stream
 		Collection<String> collection = Arrays.asList("Java", "Python", "C++", "C++");
 		Stream<String> stream = collection.stream();
 		stream.forEach(System.out::println);
 
-		System.out.println("");
+		System.out.println();
 
 		// List as Stream
 		ArrayList<String> arrayList = new ArrayList<>(collection);
 		Stream<String> stream2 = arrayList.stream();
 		stream2.forEach(System.out::println);
 
-		System.out.println("");
+		System.out.println();
 
 		// Set as Stream
 		HashSet<String> hashSet = new HashSet<>(collection);
@@ -43,7 +43,7 @@ public class StreamDemo {
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Filter");
 
 		// Stream Filters
@@ -51,7 +51,7 @@ public class StreamDemo {
 		List<String> collect = collection.stream().filter(t -> t.equalsIgnoreCase("c++")).collect(Collectors.toList());
 		System.out.println(collect);
 
-		System.out.println("");
+		System.out.println();
 
 		// Get By Age Above 25
 		ArrayList<TestDTO> testListDto = new ArrayList<>();
@@ -69,24 +69,24 @@ public class StreamDemo {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-		System.out.println("");
-		System.out.println("Sort ASEC");
+		System.out.println();
+		System.out.println("Sort ASC");
 
-		// Sort as ASEC
-		// Wrapper Class -> .sorted() gives ASEC ** Only For Wrapper Class
+		// Sort as ASC
+		// Wrapper Class -> .sorted() gives ASC ** Only For Wrapper Class
 		List<String> collect3 = arrayList.stream().sorted().collect(Collectors.toList());
 		System.out.println(collect3);
 
-		// Wrapper Class --> Comparator.naturalOrder() gives ASEC ** Only For Wrapper
+		// Wrapper Class --> Comparator.naturalOrder() gives ASC ** Only For Wrapper
 		// Class
 		List<String> collect4 = arrayList.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 		System.out.println(collect4);
 
-		// Implementing Lambda Sorting ASEC
+		// Implementing Lambda Sorting ASC
 		List<String> collect5 = arrayList.stream().sorted((o1, o2) -> o1.compareTo(o2)).collect(Collectors.toList());
 		System.out.println(collect5);
 
-		// Custom DTO ASEC
+		// Custom DTO ASC
 		List<TestDTO> collect6 = testListDto.stream().sorted((o1, o2) -> o1.getAge().compareTo(o2.getAge()))
 				.collect(Collectors.toList());
 		System.out.println(collect6);
@@ -96,19 +96,19 @@ public class StreamDemo {
 				.collect(Collectors.toList());
 		System.out.println(collect7);
 
-		// Sort DTO By Name ASEC
+		// Sort DTO By Name ASC
 		List<TestDTO> collect8 = testListDto.stream().sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
 				.collect(Collectors.toList());
 		System.out.println(collect8);
 
-		// Sort DTO By Name ASEC
+		// Sort DTO By Name ASC
 		Stream<TestDTO> stream4 = testListDto.stream();
 		List<TestDTO> collect9 = stream4.sorted(Comparator.comparing(TestDTO::getName)).collect(Collectors.toList());
 		System.out.println(collect9);
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Sort DESC");
 
 		// Sort as DESC
@@ -141,7 +141,7 @@ public class StreamDemo {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Use Case --> TestDTO Filter with Name having LEO and Sort By Age DESC");
 
 		// Use Case
@@ -150,14 +150,14 @@ public class StreamDemo {
 				.sorted(Comparator.comparingInt(TestDTO::getAge).reversed()).collect(Collectors.toList());
 		System.out.println(collect16);
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Use Case --> TestDTO Filter with Name having LEO and Sort By Age DESC And Get There IDs");
 		List<Long> collect17 = testListDto.stream().filter(t -> t.getName().equalsIgnoreCase("LEo"))
 				.sorted(Comparator.comparingInt(TestDTO::getAge).reversed()).map(TestDTO::getId)
 				.collect(Collectors.toList());
 		System.out.println(collect17);
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Find First");
 		// Get The First Value, if empty get an empty optional
 		Optional<TestDTO> findFirst = testListDto.stream().findFirst();
@@ -170,7 +170,7 @@ public class StreamDemo {
 			System.out.println("Stream Is Empty");
 		}
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Find Any");
 		// Get The Any Value, if empty get an empty optional
 		Optional<TestDTO> findAny = testListDto.stream().findAny();
@@ -183,7 +183,7 @@ public class StreamDemo {
 			System.out.println("Stream Is Empty");
 		}
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Count");
 		// Count Of Stream
 		long count = testListDto.stream().count();
@@ -192,7 +192,7 @@ public class StreamDemo {
 		long count2 = arrayList.stream().count();
 		System.out.println(count2);
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Min");
 		// Minimum You Need to Sort
 		String string = arrayList.stream().min(Comparator.naturalOrder()).get();
@@ -201,7 +201,7 @@ public class StreamDemo {
 		TestDTO testDTO = testListDto.stream().min(Comparator.comparing(TestDTO::getAge)).get();
 		System.out.println(testDTO);
 
-		System.out.println("");
+		System.out.println();
 		System.out.println("Max");
 		// Maximum You Need to Sort
 		String string2 = arrayList.stream().max(Comparator.naturalOrder()).get();
@@ -209,6 +209,44 @@ public class StreamDemo {
 
 		TestDTO testDTO2 = testListDto.stream().max(Comparator.comparing(TestDTO::getAge)).get();
 		System.out.println(testDTO2);
+
+		System.out.println();
+		System.out.println("Flat Map");
+
+		// Flat Map is used to convert the list of list to single list
+		List<List<String>> list = Arrays.asList(Arrays.asList("A", "B"), Arrays.asList("D", "C"), Arrays.asList("F", "E"), Arrays.asList("G", "G"));
+
+		List<String> list1 = list.stream().flatMap(Collection::stream).toList();
+		System.out.println(list1);
+
+		// Converting into Lower Case
+		List<String> collect18 = list.stream().flatMap(strings ->  strings.stream().map(String::toLowerCase)).toList();
+		System.out.println(collect18);
+
+		// Distinct remove duplicates
+		System.out.println();
+		List<String> list2 = list.stream().flatMap(Collection::stream).distinct().toList();
+		System.out.println(list2);
+
+		// Sorting
+		System.out.println();
+		List<String> list3 = list.stream().flatMap(Collection::stream).distinct().sorted().toList();
+		System.out.println(list3);
+
+		// Limit
+		System.out.println();
+		List<String> list4 = list.stream().flatMap(Collection::stream).distinct().sorted().limit(3).toList();
+		System.out.println(list4);
+
+		// Joining
+		System.out.println();
+		String collect19 = list.stream().flatMap(Collection::stream).distinct().sorted().collect(Collectors.joining());
+		System.out.println(collect19);
+
+		// Joining with Delimiter
+		System.out.println();
+		String collect20 = list.stream().flatMap(Collection::stream).distinct().sorted().collect(Collectors.joining(","));
+		System.out.println(collect20);
 
 	}
 }

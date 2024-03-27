@@ -85,7 +85,8 @@ public class StreamInterView {
 
         // 11- Find the Students who stays in Mumbai and sort them by their names
         System.out.println("11- Find the Students who stays in Mumbai and sort them by their names");
-        List<Student> delhi = list.stream().filter(student -> student.getCity().equalsIgnoreCase("Mumbai")).sorted(Comparator.comparing(Student::getFirstName)).toList();
+        List<Student> delhi = list.stream().filter(student -> student.getCity().equalsIgnoreCase("Mumbai"))
+                .sorted(Comparator.comparing(Student::getFirstName)).toList();
         delhi.forEach(System.out::println);
         System.out.println();
 
@@ -97,13 +98,15 @@ public class StreamInterView {
 
         // 13- Find the highest rank in each department
         System.out.println("13- Find the highest rank in each department");
-        Map<String, Optional<Student>> collect4 = list.stream().collect(Collectors.groupingBy(Student::getDepartmentName, Collectors.maxBy(Comparator.comparingInt(Student::getRank))));
+        Map<String, Optional<Student>> collect4 = list.stream()
+                .collect(Collectors.groupingBy(Student::getDepartmentName, Collectors.maxBy(Comparator.comparingInt(Student::getRank))));
         collect4.entrySet().forEach(System.out::println);
         System.out.println();
 
         // 13- Find the Lowest rank in each department
         System.out.println("13- Find the Lowest rank in each department");
-        Map<String, Optional<Student>> collect5 = list.stream().collect(Collectors.groupingBy(Student::getDepartmentName, Collectors.minBy(Comparator.comparingInt(Student::getRank))));
+        Map<String, Optional<Student>> collect5 = list.stream()
+                .collect(Collectors.groupingBy(Student::getDepartmentName, Collectors.minBy(Comparator.comparingInt(Student::getRank))));
         collect5.entrySet().forEach(System.out::println);
         System.out.println();
 
@@ -124,5 +127,21 @@ public class StreamInterView {
         Optional<Student> first = list.stream().sorted(Comparator.comparingInt(Student::getRank).reversed()).skip(1).findFirst();
         System.out.println(first);
         System.out.println();
+
+        // 16- Write a single line code to print all the student sort by first and last names joining with comma
+        System.out.println("16- Write a single line code to print all the student first and last names joining with comma");
+        String collect6 = list.stream().map(student -> student.getFirstName().concat(" ").concat(student.getLastName())).sorted()
+                .collect(Collectors.joining(", "));
+        System.out.println(collect6);
+        System.out.println();
+
+        // 17- Write a single line code to print all the student first and last names joining and seperated by comma
+        System.out.println("17- Write a single line code to print all the student first and last names joining and seperated by comma");
+        String collect7 = list.stream().map(student -> student.getFirstName().concat(" ").concat(student.getLastName())).sorted()
+                .collect(Collectors.joining(", ", "(", ")"));
+        System.out.println(collect7);
+
+//        String collect7 = list.stream().map(student -> "?").collect(Collectors.joining(", ", "(", ")"));
+//        System.out.println(collect7);
     }
 }

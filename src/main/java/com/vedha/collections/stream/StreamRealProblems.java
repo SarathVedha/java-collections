@@ -27,10 +27,6 @@ import com.vedha.collections.dtos.TestDTO;
  */
 public class StreamRealProblems {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 
 		// Remove duplicates in Array
@@ -58,13 +54,13 @@ public class StreamRealProblems {
 		System.out.println(collect2);
 
 		ArrayList<TestDTO> arrayList = new ArrayList<>();
-		arrayList.add(new TestDTO(1001l, "Vedha", 20, 100.0));
-		arrayList.add(new TestDTO(1002l, "Master", 21, 100.0));
-		arrayList.add(new TestDTO(1003l, "Theri", 25, 1000.0));
-		arrayList.add(new TestDTO(1004l, "Leo", 29, 3000.0));
-		arrayList.add(new TestDTO(1005l, "Vijay", 30, 20000.0));
-		arrayList.add(new TestDTO(1006l, "Vijay Sethupathi", 40, 10000.0));
-		arrayList.add(new TestDTO(1007l, "Vikram", 20, 10000.0));
+		arrayList.add(new TestDTO(1001L, "Vedha", 20, 100.0));
+		arrayList.add(new TestDTO(1002L, "Master", 21, 100.0));
+		arrayList.add(new TestDTO(1003L, "Theri", 25, 1000.0));
+		arrayList.add(new TestDTO(1004L, "Leo", 29, 3000.0));
+		arrayList.add(new TestDTO(1005L, "Vijay", 30, 20000.0));
+		arrayList.add(new TestDTO(1006L, "Vijay Sethupathi", 40, 10000.0));
+		arrayList.add(new TestDTO(1007L, "Vikram", 20, 10000.0));
 
 		// Sort DTO By Salary
 		List<TestDTO> collect5 = arrayList.stream().sorted(Comparator.comparingDouble(TestDTO::getSalary))
@@ -77,7 +73,7 @@ public class StreamRealProblems {
 		System.out.println(collect4);
 
 		// get max salary id only
-		Long long1 = arrayList.stream().collect(Collectors.maxBy(Comparator.comparingDouble(TestDTO::getSalary)))
+		Long long1 = arrayList.stream().max(Comparator.comparingDouble(TestDTO::getSalary))
 				.map(TestDTO::getId).get();
 		System.out.println(long1);
 

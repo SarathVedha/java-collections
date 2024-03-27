@@ -1,12 +1,6 @@
 package com.vedha.collections.stream;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -213,6 +207,8 @@ public class StreamDemo {
 		System.out.println();
 		System.out.println("Flat Map");
 
+		// -----------------------------------------------------------------------------------------------------------------------------------------------
+
 		// Flat Map is used to convert the list of list to single list
 		List<List<String>> list = Arrays.asList(Arrays.asList("A", "B"), Arrays.asList("D", "C"), Arrays.asList("F", "E"), Arrays.asList("G", "G"));
 
@@ -255,9 +251,41 @@ public class StreamDemo {
 		List<String> list5 = a.stream().distinct().sorted().toList();
 		System.out.println(list5);
 
-
 		System.out.println();
 		String reduce = a.stream().distinct().sorted().reduce("", String::concat);
 		System.out.println(reduce);
+
+		// -----------------------------------------------------------------------------------------------------------------------------------------------
+
+		// HashMap Stream Operations
+		System.out.println();
+		System.out.println("HashMap Stream Operations");
+		HashMap<String, String> hashMap = new HashMap<>();
+		hashMap.put("Ab", "Apple");
+		hashMap.put("ba", "Bad");
+		hashMap.put("aa", "Dog");
+		hashMap.put("Bd", "Ball");
+		System.out.println(hashMap);
+
+		// Key Set (Key always unique)
+		Set<String> keySet = hashMap.keySet();
+
+		// Values Collection (Values can be duplicate)
+		Collection<String> values = hashMap.values();
+
+		// Entry Set (entry -> Key and Value) Entry is unique
+		Set<Map.Entry<String, String>> entries = hashMap.entrySet();
+
+		// Key Set Stream
+		List<String> list6 = keySet.stream().sorted().toList();
+		System.out.println(list6);
+
+		// Values Stream
+		List<String> list7 = values.stream().sorted().toList();
+		System.out.println(list7);
+
+		// Entry Set Stream
+		List<Map.Entry<String, String>> list8 = entries.stream().sorted(Map.Entry.comparingByValue()).toList();
+		System.out.println(list8);
 	}
 }

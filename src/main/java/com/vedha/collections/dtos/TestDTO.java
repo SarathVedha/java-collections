@@ -1,7 +1,6 @@
 package com.vedha.collections.dtos;
 
 public class TestDTO {
-
 	private Long id;
 
 	private String name;

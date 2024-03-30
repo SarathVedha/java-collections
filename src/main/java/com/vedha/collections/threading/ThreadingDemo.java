@@ -17,7 +17,7 @@ public class ThreadingDemo {
             for (int i = 0; i < 3; i++) {
                 strings.add("D");
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.SECONDS.sleep(i);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -30,6 +30,8 @@ public class ThreadingDemo {
 
             for(String s : strings) {
 
+                System.out.println("Thread Name: " + Thread.currentThread().getName());
+                System.out.println("Thread Count: " + Thread.activeCount());
                 System.out.println(s);
             }
         };
@@ -40,6 +42,9 @@ public class ThreadingDemo {
 
         t1.start();t2.start();
         t1.join();t2.join();
+
+        System.out.println("Thread Name: " + Thread.currentThread().getName());
+        System.out.println("Thread Count: " + Thread.activeCount());
 
         System.out.println("Main Thread");
 

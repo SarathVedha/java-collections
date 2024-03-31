@@ -6,7 +6,6 @@ public enum SortField {
     ID("id"),
     NAME("name"),
     PHONE_NUMBER("phoneNumber"),
-
     AGE("age");
 
     SortField(String value) {

@@ -117,7 +117,6 @@ public class ArraysDemo {
 		
 		Integer apply = function.apply("Sarthh");
 		System.out.println(apply);
-		
 
 	}
 

@@ -47,7 +47,7 @@ public class HashMapProblems {
 
 		ListIterator<Character> listIterator = collect.listIterator();
 		while (listIterator.hasNext()) {
-			Character character = (Character) listIterator.next();
+			Character character = listIterator.next();
 			if (map.containsKey(character)) {
 
 				Integer integer = map.get(character);
@@ -62,7 +62,7 @@ public class HashMapProblems {
 		Set<Entry<Character, Integer>> entrySet = map.entrySet();
 		Iterator<Entry<Character, Integer>> iterator = entrySet.iterator();
 		while (iterator.hasNext()) {
-			Map.Entry<Character, Integer> entry = (Map.Entry<Character, Integer>) iterator.next();
+			Map.Entry<Character, Integer> entry = iterator.next();
 			if (entry.getValue() > 1) {
 
 				System.out.println("Duplicate Value : " + entry);

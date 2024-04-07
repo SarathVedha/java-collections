@@ -1,5 +1,7 @@
 package com.vedha.collections.dtos;
 
+import java.util.Objects;
+
 public class TestDTO {
 	private Long id;
 
@@ -58,4 +60,15 @@ public class TestDTO {
 		return "TestDTO [id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + "]";
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof TestDTO testDTO)) return false;
+        return Objects.equals(id, testDTO.id) && Objects.equals(name, testDTO.name) && Objects.equals(age, testDTO.age) && Objects.equals(salary, testDTO.salary);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, age, salary);
+	}
 }

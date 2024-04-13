@@ -33,7 +33,10 @@ public class ReflectDemo {
         this.name = name;
     }
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
+
+        Class<?> aClass = Class.forName("com.vedha.collections.reflect.ReflectDemo");
+        System.out.println(aClass.getName());
 
         // Get the class object
         Class<ReflectDemo> reflectDemoClass = ReflectDemo.class;

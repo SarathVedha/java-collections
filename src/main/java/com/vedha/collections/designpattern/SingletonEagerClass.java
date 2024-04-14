@@ -12,7 +12,7 @@ public class SingletonEagerClass {
     private static final SingletonEagerClass instance = new SingletonEagerClass();
 
     // private constructor to avoid client applications using the constructor
-    private SingletonEagerClass(){}
+    private SingletonEagerClass() {}
 
     public static SingletonEagerClass getInstance() {
 

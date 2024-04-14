@@ -14,6 +14,7 @@ public class ThreadingDemo {
         strings.add("B");
         strings.add("C");
 
+        // Runnable is a functional interface
         Runnable runnable = () -> {
 
             for (int i = 0; i < 3; i++) {
@@ -62,6 +63,10 @@ public class ThreadingDemo {
 
         System.out.println("Async: " + stringCompletableFuture.get());
 
+        new Thread(() -> {
+            System.out.println("Thread Name: " + Thread.currentThread().getName());
+            System.out.println("Thread Count: " + Thread.activeCount());
+        }).start();
 
     }
 }

@@ -69,6 +69,14 @@ public class HashMaps {
 		}
 
 		System.out.println(hashMap);
+
+		// String Object will have hashcode and equals method
+		// HashMap will use hashcode and equals method to check the duplicate values
+		HashMap<String, String> hashMap2 = new HashMap<>();
+		hashMap2.put(new String("HI"), "Vedha");
+		hashMap2.put(new String("HI"), "Leo"); // it will replace the value
+
+		System.out.println(hashMap2);
 	}
 
 }

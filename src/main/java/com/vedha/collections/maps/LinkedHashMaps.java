@@ -16,6 +16,9 @@ public class LinkedHashMaps {
 		linkedHashMap.put("102", "Leo");
 		linkedHashMap.put("103", "Master");
 		linkedHashMap.put("104", "Bigil");
+		// Null Key and Value is Allowed in LinkedHashMap but not in TreeMap
+		linkedHashMap.put(null, null);
+		linkedHashMap.put(null, null);
 
 		System.out.println(linkedHashMap);
 
@@ -25,7 +28,7 @@ public class LinkedHashMaps {
 			Map.Entry<String, String> entry = (Map.Entry<String, String>) iterator.next();
 
 			String key = entry.getKey();
-			if (Integer.parseInt(key) >= 102) {
+			if (key != null && Integer.parseInt(key) >= 102) {
 
 				entry.setValue("Leo");
 			}

@@ -16,6 +16,8 @@ public class TreeHashMaps {
 		treeMap.put("Vedha", "Mass");
 		treeMap.put("Leo", "Therika");
 		treeMap.put("Bigil", "Pudichi");
+		// treeMap.put(null, null); // Null Pointer Exception
+		treeMap.put(null, null);
 
 		System.out.println(treeMap);
 

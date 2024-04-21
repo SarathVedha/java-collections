@@ -1,11 +1,9 @@
 package com.vedha.collections.maps;
 
-import java.util.Iterator;
-import java.util.Map;
+import com.vedha.collections.stream.Student;
+
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
 
 public class TreeHashMaps {
 
@@ -17,7 +15,7 @@ public class TreeHashMaps {
 		treeMap.put("Leo", "Therika");
 		treeMap.put("Bigil", "Pudichi");
 		// treeMap.put(null, null); // Null Pointer Exception
-		treeMap.put(null, null);
+//		treeMap.put(null, null);
 
 		System.out.println(treeMap);
 
@@ -54,6 +52,16 @@ public class TreeHashMaps {
 
 		NavigableMap<String, String> descendingMap = treeMap2.descendingMap();
 		System.out.println(descendingMap);
+
+		Student student1 = new Student(2, "Rohit", "Mall", 30, "Male", "Mechanical Engineering", 2015, "Mumbai", 122);
+		Student student2 = new Student(1, "Rohit", "Mall", 30, "Male", "Mechanical Engineering", 2015, "Mumbai", 122);
+
+		// For Custom Object Sorting, We need to Implement Comparable or Comparator
+		TreeMap<Student, String> studentTreeMap = new TreeMap<>(Comparator.comparingInt(Student::getId));
+		studentTreeMap.put(student1, "Student1");
+		studentTreeMap.put(student2, "student2");
+
+		System.out.println(studentTreeMap);
 
 	}
 }

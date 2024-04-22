@@ -7,6 +7,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadingDemo {
 
+    /* Thread States:
+        New: The thread is created but not yet started.
+        Runnable: The thread is ready to run, and the operating system is scheduling it to execute.
+        Blocked/Waiting: The thread is waiting for a resource or another thread to release a lock.
+        Timed Waiting: The thread is in a waiting state for a specified period.
+        Terminated: The thread has finished its execution.
+    */
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         ArrayList<String> strings = new ArrayList<>();

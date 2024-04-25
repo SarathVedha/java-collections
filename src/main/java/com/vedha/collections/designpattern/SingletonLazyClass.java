@@ -9,6 +9,7 @@ public class SingletonLazyClass {
 
     private static SingletonLazyClass instance;
 
+    // private constructor to avoid client applications using the constructor
     private SingletonLazyClass(){}
 
     public static SingletonLazyClass getInstance() {

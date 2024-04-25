@@ -64,10 +64,13 @@ public class SerializationDemo implements Serializable {
         System.out.println("Serialization done");
 
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"));
-        SerializationDemo deserialization = (SerializationDemo) objectInputStream.readObject();
+//        SerializationDemo deserialization = (SerializationDemo) objectInputStream.readObject();
+        Object o = objectInputStream.readObject();
+        if (o instanceof SerializationDemo deserialization) {
+            System.out.println("deserialization: " + deserialization);
+        }
         objectInputStream.close();
 
-        System.out.println("deserialization: " + deserialization);
         System.out.println("Deserialization done");
     }
 }

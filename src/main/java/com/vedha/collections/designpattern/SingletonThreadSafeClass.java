@@ -9,6 +9,7 @@ public class SingletonThreadSafeClass {
 
     private static SingletonThreadSafeClass instance;
 
+    // private constructor to avoid client applications using the constructor
     private SingletonThreadSafeClass(){}
 
     public static synchronized SingletonThreadSafeClass getInstance(){

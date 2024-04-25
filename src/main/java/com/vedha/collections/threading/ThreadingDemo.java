@@ -71,10 +71,12 @@ public class ThreadingDemo {
 
         System.out.println("Async: " + stringCompletableFuture.get());
 
-        new Thread(() -> {
+        // Lambda Runnable
+        Thread thread = new Thread(() -> {
             System.out.println("Thread Name: " + Thread.currentThread().getName());
             System.out.println("Thread Count: " + Thread.activeCount());
-        }).start();
-
+        });
+        thread.start();
+        thread.join();
     }
 }

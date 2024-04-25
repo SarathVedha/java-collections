@@ -43,6 +43,11 @@ public class PersonWithEquals {
                 '}';
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
     public static void main(String[] args) {
 
         PersonWithEquals person1 = new PersonWithEquals("John", 30);
@@ -53,8 +58,8 @@ public class PersonWithEquals {
 
         System.out.println(person1.hashCode());
         System.out.println(person2.hashCode());
-        // Compare the references of two objects with hashcode need to override.
-        System.out.println(person1 == person2); // false
+        // Compare the references of two objects with hashcode method.
+        System.out.println(person1 == person2); // false as it compares the references of two objects.
 
     }
 }

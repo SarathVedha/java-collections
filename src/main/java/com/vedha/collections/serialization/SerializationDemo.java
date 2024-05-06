@@ -65,8 +65,8 @@ public class SerializationDemo implements Serializable {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"));
 //        SerializationDemo deserialization = (SerializationDemo) objectInputStream.readObject();
-        Object o = objectInputStream.readObject();
-        if (o instanceof SerializationDemo deserialization) {
+        Object seObject = objectInputStream.readObject();
+        if (seObject instanceof SerializationDemo deserialization) {
             System.out.println("deserialization: " + deserialization);
         }
         objectInputStream.close();

@@ -45,7 +45,7 @@ public class SerializationDemo implements Serializable {
                 '}';
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
 
         // Serialization is a mechanism of converting the state of an object into a byte stream.
         // Deserialization is the reverse process of serialization. It is the mechanism of reconstructing the object from the serialized state.
@@ -56,21 +56,31 @@ public class SerializationDemo implements Serializable {
         System.out.println("serializationDemo: " + serializationDemo);
 
         // throws NotSerializableException if SerializationDemo class does not implement Serializable interface
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"));
-        objectOutputStream.writeObject(serializationDemo);
-        objectOutputStream.flush();
-        objectOutputStream.close();
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"))) {
 
-        System.out.println("Serialization done");
+            objectOutputStream.writeObject(serializationDemo);
+            objectOutputStream.flush();
+            objectOutputStream.close();
 
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"));
-//        SerializationDemo deserialization = (SerializationDemo) objectInputStream.readObject();
-        Object seObject = objectInputStream.readObject();
-        if (seObject instanceof SerializationDemo deserialization) {
-            System.out.println("deserialization: " + deserialization);
+            System.out.println("Serialization done");
+        } catch (IOException e) {
+            System.err.println("IOException: " + e);
         }
-        objectInputStream.close();
 
-        System.out.println("Deserialization done");
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("C:\\Users\\sarat\\Downloads\\serializationDemo.txt"))) {
+
+            // SerializationDemo deserialization = (SerializationDemo) objectInputStream.readObject();
+            Object seObject = objectInputStream.readObject();
+            if (seObject instanceof SerializationDemo deserialization) {
+                System.out.println("deserialization: " + deserialization);
+            }
+            objectInputStream.close();
+
+            System.out.println("Deserialization done");
+        }catch (IOException e) {
+            System.err.println("IOException: " + e);
+        } catch (ClassNotFoundException e) {
+            System.err.println("ClassNotFoundException: " + e);
+        }
     }
 }

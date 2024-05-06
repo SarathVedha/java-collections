@@ -3,7 +3,10 @@ package com.vedha.collections.serialization;
 import java.io.*;
 import java.util.Objects;
 
+// static fields are not serialized because they are not part of the state of the object, they are part of the class.
 public class SerializationDemo implements Serializable {
+
+    static int staticField = 10;
 
     private String name;
 
@@ -24,6 +27,7 @@ public class SerializationDemo implements Serializable {
     public void setAge(int age) {
         this.age = age;
     }
+
 
     @Override
     public boolean equals(Object o) {

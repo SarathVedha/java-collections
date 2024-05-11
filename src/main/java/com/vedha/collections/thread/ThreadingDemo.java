@@ -1,4 +1,4 @@
-package com.vedha.collections.threading;
+package com.vedha.collections.thread;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -22,11 +22,14 @@ public class ThreadingDemo {
         strings.add("B");
         strings.add("C");
 
-        // Runnable is a functional interface
+        // Runnable is a functional interface,
+        // Runnable is a functional interface that takes no arguments and returns no data.
         Runnable runnable = () -> {
 
             for (int i = 0; i < 3; i++) {
-                strings.add("D");
+                synchronized (strings) {
+                    strings.add("D");
+                }
 
                 try {
                     TimeUnit.SECONDS.sleep(i);
@@ -41,13 +44,18 @@ public class ThreadingDemo {
 
         Runnable runnable1 = () -> {
 
-            Thread.yield(); // give up the CPU to other threads with same priority
-            for(String s : strings) {
+            Thread.yield(); // give up the CPU to other threads with the same priority
 
-                System.out.println("Thread Name: " + Thread.currentThread().getName());
-                System.out.println("Thread Count: " + Thread.activeCount());
-                System.out.println(s);
+            synchronized (strings){
+
+                for(String s : strings) {
+
+                    System.out.println("Thread Name: " + Thread.currentThread().getName());
+                    System.out.println("Thread Count: " + Thread.activeCount());
+                    System.out.println(s);
+                }
             }
+
         };
 
 
@@ -78,5 +86,43 @@ public class ThreadingDemo {
         });
         thread.start();
         thread.join();
+
+        System.out.println("-----------------------");
+
+        // user(normal) thread vs daemon thread
+        // User Thread is a thread created by the user.It is a high priority thread that runs in the foreground.
+        Thread userThread = new Thread(() -> {
+            try {
+
+                for (int i = 0; i < 10; i++) {
+
+                    System.out.println("User Thread: " + i);
+                    TimeUnit.SECONDS.sleep(1);
+                }
+            }catch (Exception e) {
+                System.err.println(e);
+            }
+
+        });
+
+        // Daemon Thread is a low priority thread that runs in the background to perform tasks such as garbage collection.
+        // Daemon threads are terminated by the JVM when there are no user(normal) threads running.
+        Thread daemonThread = new Thread(() -> {
+            try {
+
+                for (int i = 0; i < 10; i++) {
+
+                    System.out.println("Daemon Thread: " + i);
+                    TimeUnit.SECONDS.sleep(2);
+                }
+            }catch (Exception e) {
+                System.err.println(e);
+            }
+
+        });
+
+        userThread.start(); // with 1 sec sleep
+        daemonThread.setDaemon(true); // with 2 sec sleep
+        daemonThread.start(); // daemon thread will be terminated when user thread is finished
     }
 }

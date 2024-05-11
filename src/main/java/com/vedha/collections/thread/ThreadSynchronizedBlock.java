@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ThreadSynchronizedBlock {
 
+    // Shared resource
     private double balance;
 
     public ThreadSynchronizedBlock(double balance) {

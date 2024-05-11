@@ -19,13 +19,27 @@ public class SingletonEagerClass {
         return instance;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        Thread t1 = new Thread(() -> {
+            SingletonEagerClass instance1 = SingletonEagerClass.getInstance();
+            System.out.println(Thread.currentThread().getName() + " " + instance1.hashCode());
+        }, "instance1");
+
+        Thread t2 = new Thread(() -> {
+            SingletonEagerClass instance2 = SingletonEagerClass.getInstance();
+            System.out.println(Thread.currentThread().getName() + " " + instance2.hashCode());
+        }, "instance2");
+
+        t1.start();t2.start();
+
+        t1.join();t2.join();
 
         SingletonEagerClass instance1 = SingletonEagerClass.getInstance();
-        SingletonEagerClass instance2 = SingletonEagerClass.getInstance();
+        System.out.println(Thread.currentThread().getName() + " " + instance1.hashCode());
 
-        System.out.println(instance1.hashCode());
-        System.out.println(instance2.hashCode());
+        SingletonEagerClass instance2 = SingletonEagerClass.getInstance();
+        System.out.println(Thread.currentThread().getName() + " " + instance2.hashCode());
     }
 
 }

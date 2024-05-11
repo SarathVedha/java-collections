@@ -68,20 +68,9 @@ public class ThreadSynchronizedBlock {
             account.withdraw(20);
         }, "Vedha-withdraw-2");
 
+        deposit1.start();deposit2.start();withdraw1.start();withdraw2.start();
 
-        deposit1.start();
-        deposit2.start();
-        withdraw1.start();
-        withdraw2.start();
-
-        try {
-            deposit1.join();
-            deposit2.join();
-            withdraw1.join();
-            withdraw2.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        deposit1.join();deposit2.join();withdraw1.join();withdraw2.join();
 
         System.out.println("Final Balance: " + account.getBalance()); // if not synchronized, the final balance will be incorrect sometimes.
     }

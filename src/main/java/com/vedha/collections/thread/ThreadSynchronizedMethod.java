@@ -2,12 +2,12 @@ package com.vedha.collections.thread;
 
 import java.util.concurrent.TimeUnit;
 
-public class ThreadSynchronized {
+public class ThreadSynchronizedMethod {
 
     // Shared resource
     private double balance;
 
-    public ThreadSynchronized(double balance) {
+    public ThreadSynchronizedMethod(double balance) {
         this.balance = balance;
     }
 
@@ -43,7 +43,7 @@ public class ThreadSynchronized {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ThreadSynchronized account = new ThreadSynchronized(100);
+        ThreadSynchronizedMethod account = new ThreadSynchronizedMethod(100);
 
         Thread deposit1 = new Thread(() -> {
            account.deposit(10);
@@ -61,20 +61,9 @@ public class ThreadSynchronized {
             account.withdraw(20);
         }, "Vedha-withdraw-2");
 
+        deposit1.start();deposit2.start();withdraw1.start();withdraw2.start();
 
-        deposit1.start();
-        deposit2.start();
-        withdraw1.start();
-        withdraw2.start();
-
-        try {
-            deposit1.join();
-            deposit2.join();
-            withdraw1.join();
-            withdraw2.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        deposit1.join();deposit2.join();withdraw1.join();withdraw2.join();
 
         System.out.println("Final Balance: " + account.getBalance()); // if not synchronized, the final balance will be incorrect sometimes.
     }

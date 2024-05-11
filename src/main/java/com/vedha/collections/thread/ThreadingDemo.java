@@ -30,6 +30,7 @@ public class ThreadingDemo {
                 synchronized (strings) {
                     // ConcurrentModificationException will be thrown if we don't use synchronized block
                     // or use CopyOnWriteArrayList instead of ArrayList to avoid ConcurrentModificationException
+                    // or use Collections.synchronizedList(new ArrayList<>()) to avoid ConcurrentModificationException
                     strings.add("D");
                 }
 

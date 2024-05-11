@@ -13,7 +13,7 @@ public class ThreadSynchronized {
     // Synchronized keyword is used to prevent multiple threads from accessing the same method at the same time.
     // If a thread is executing a synchronized method, no other thread can execute any synchronized method in the same object.
     // Synchronized method can be lock full method
-    public synchronized void deposit(double amount) {
+    public synchronized void deposit(double amount) { // synchronized method thread safe
 
         System.out.println("Thread Name: " + Thread.currentThread().getName() + " is depositing " + amount);
 
@@ -25,7 +25,7 @@ public class ThreadSynchronized {
         balance += amount;
     }
 
-    public synchronized void withdraw(double amount) {
+    public synchronized void withdraw(double amount) { // synchronized method thread safe
 
         System.out.println("Thread Name: " + Thread.currentThread().getName() + " is withdrawing " + amount);
 

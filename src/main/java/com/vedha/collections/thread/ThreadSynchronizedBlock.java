@@ -23,7 +23,7 @@ public class ThreadSynchronizedBlock {
             throw new RuntimeException(e);
         }
 
-        synchronized (this) {
+        synchronized (this) { // this is the object that is being locked. and thread safe.
             balance += amount;
         }
     }
@@ -38,7 +38,7 @@ public class ThreadSynchronizedBlock {
             throw new RuntimeException(e);
         }
 
-        synchronized (this) {
+        synchronized (this) { // this is the object that is being locked. and thread safe.
             balance -= amount;
         }
     }

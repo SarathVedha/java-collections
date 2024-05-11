@@ -28,6 +28,8 @@ public class ThreadingDemo {
 
             for (int i = 0; i < 3; i++) {
                 synchronized (strings) {
+                    // ConcurrentModificationException will be thrown if we don't use synchronized block
+                    // or use CopyOnWriteArrayList instead of ArrayList to avoid ConcurrentModificationException
                     strings.add("D");
                 }
 

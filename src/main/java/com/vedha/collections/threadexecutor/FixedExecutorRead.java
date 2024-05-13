@@ -24,9 +24,13 @@ public class FixedExecutorRead {
 
         List<URI> list = List.of(new ClassPathResource("/files/sample.txt").getURI(), new ClassPathResource("/files/Test.txt").getURI(), new ClassPathResource("/files/Test2.txt").getURI());
 
+        int availableProcessors = Runtime.getRuntime().availableProcessors();
+        System.out.println("Available processors : " + availableProcessors);
+
         // Create a fixed thread pool with 2 threads to read the files concurrently
         // it will reuse the threads to read the files concurrently
         ExecutorService executor = Executors.newFixedThreadPool(2);
+//        ExecutorService executor = Executors.newFixedThreadPool(availableProcessors);
 
         // Execute method will accept runnable and execute the task concurrently
         // will not return any result

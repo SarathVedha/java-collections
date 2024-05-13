@@ -62,9 +62,9 @@ public class FileDemo {
          Exabyte	EB	    1024 petabytes
          */
 
-        System.out.println("gb: " + 1024 * 1024 * 1024); // returns 1 GB in bytes
+        System.out.println("gb in bytes: " + 1024 * 1024 * 1024); // returns 1 GB in bytes
         System.out.println("disk total space in bytes: " + file.getTotalSpace()); // returns total space in bytes of file system drive
-        System.out.println("disk total space in gb: " + BigInteger.valueOf(file.getFreeSpace()).divide(BigInteger.valueOf(1024 * 1024 * 1024))); // returns free space in GB
+        System.out.println("disk total free space in gb: " + BigInteger.valueOf(file.getFreeSpace()).divide(BigInteger.valueOf(1024 * 1024 * 1024))); // returns free space in GB
 
         File file4 = new File("D:\\Devops\\sample-spring-microservices-kubernetes");
         System.out.println(Arrays.toString(file4.list())); // returns list of files and directories as string array
@@ -74,5 +74,13 @@ public class FileDemo {
         System.out.println(Arrays.stream(Objects.requireNonNull(file4.listFiles())).filter(File::isDirectory).toList()); // returns list of dir
         System.out.println(Arrays.stream(Objects.requireNonNull(file4.listFiles())).filter(files -> files.isDirectory() && files.getName().startsWith(".")).toList()); // returns list of dir with . prefix
 
+        System.out.println("Root directories: ");
+        File[] files = File.listRoots();// returns list of root directories
+        Arrays.stream(files).forEach(file1 -> {
+
+            System.out.println("file path: " + file1.toPath());
+            System.out.println("total space: " + BigInteger.valueOf(file1.getTotalSpace()).divide(BigInteger.valueOf(1024 * 1024 * 1024)));
+            System.out.println("total free space: " + BigInteger.valueOf(file1.getFreeSpace()).divide(BigInteger.valueOf(1024 * 1024 * 1024)));
+        }); // print root directories
     }
 }

@@ -46,16 +46,18 @@ public class ProcessDemo {
         System.out.println("Process Completed: " + b);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
+        System.out.println("Output: ");
         reader.lines().forEach(System.out::println);
 
         BufferedReader reader1 = new BufferedReader(new InputStreamReader(process1.getErrorStream()));
+        System.out.println("Error: ");
         reader1.lines().forEach(System.out::println);
 
         int i = process1.exitValue();
         System.out.println("Exit Value: " + i);
 
         ProcessHandle.Info info = process1.info();
-        System.out.println(info);
+        System.out.println("Info: " + info);
 
     }
 }

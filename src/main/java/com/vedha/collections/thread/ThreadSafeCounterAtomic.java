@@ -2,7 +2,7 @@ package com.vedha.collections.thread;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ThreadSafeCounter {
+public class ThreadSafeCounterAtomic {
 
     // Shared resource
 //    static int counter = 0;

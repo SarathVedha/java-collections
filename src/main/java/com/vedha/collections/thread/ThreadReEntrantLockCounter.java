@@ -13,14 +13,15 @@ public class ThreadReEntrantLockCounter implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10000; i++) {
 
+        try {
             lock.lock();
-            try {
+            for (int i = 0; i < 20000; i++) {
+
                 size++;
-            } finally {
-                lock.unlock();
             }
+        } finally {
+            lock.unlock();
         }
     }
 

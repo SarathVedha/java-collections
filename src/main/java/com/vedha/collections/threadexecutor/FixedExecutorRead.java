@@ -20,6 +20,7 @@ public class FixedExecutorRead {
         strings.forEach(s -> System.out.println(Thread.currentThread().getName() + " : " + path + " : " + s));
     }
 
+    // Thread lifecycle is managed by the executor service
     public static void main(String[] args) throws IOException, InterruptedException {
 
         List<URI> list = List.of(new ClassPathResource("/files/sample.txt").getURI(), new ClassPathResource("/files/Test.txt").getURI(), new ClassPathResource("/files/Test2.txt").getURI());

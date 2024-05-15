@@ -21,6 +21,6 @@ public class RegexDemo {
 
         System.out.println(isAlphanumericSpace("1test لاترلاصر محضؤ ؤضحهبىةسسش")); // true
 
-        System.out.println(isAlphaNumericArabicSpace( "1test يسي")); // true
+        System.out.println(isAlphaNumericArabicSpace( ",1test يسيضصثقفغعهخحشسيبلاتنمئؤرلاىةوزو")); // true
     }
 }

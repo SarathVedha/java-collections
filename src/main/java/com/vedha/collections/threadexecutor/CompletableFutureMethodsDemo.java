@@ -1,6 +1,8 @@
 package com.vedha.collections.threadexecutor;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class CompletableFutureMethodsDemo {
@@ -76,7 +78,6 @@ public class CompletableFutureMethodsDemo {
         // thenCompose method is used to combine the results of two CompletableFutures
         CompletableFuture<Void> voidCompletableFuture3 = CompletableFuture.supplyAsync(() -> 2 * 5).thenApply(integer -> integer + 5).thenCompose(integer -> integer == 15 ? CompletableFuture.completedFuture(integer) : CompletableFuture.completedFuture(0)).thenAccept(integer -> System.out.println("CompletableFuture.thenCompose() method: " + integer));
 
-
         // Pipeline of CompletableFutures
         CompletableFuture<Void> voidCompletableFuture4 = CompletableFuture.supplyAsync(() -> 2 + 3).thenApply(integer -> integer + 5).thenCombine(CompletableFuture.supplyAsync(() -> 10 * 2), Integer::sum).thenApply(integer -> {
 
@@ -90,8 +91,23 @@ public class CompletableFutureMethodsDemo {
             return -1;
         }).thenAccept(integer -> System.out.println("CompletableFuture Pipeline: " + integer));
 
+        // ExecutorService
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        // thenApplyAsync method is used to process the result of the previous stage asynchronously using the specified Executor
+        CompletableFuture<Void> voidCompletableFuture5 = CompletableFuture.supplyAsync(() -> {
+            System.out.println("CompletableFuture.supplyAsync() method: " + Thread.currentThread().getName());
+            return 2 + 3;
+        }, executorService).thenApplyAsync(integer -> {
+            System.out.println("CompletableFuture.thenApplyAsync() method: " + Thread.currentThread().getName());
+            return integer + 5;
+        }, executorService).thenAccept(integer -> System.out.println("CompletableFuture.thenAccept() method: " + Thread.currentThread().getName() + integer));
+
+        // shutdown the ExecutorService
+        executorService.shutdown();
+
         // allOf method is used to wait for the completion of all the CompletableFutures
-        CompletableFuture.allOf(voidCompletableFuture, stringCompletableFuture, integerCompletableFuture1, voidCompletableFuture1, voidCompletableFuture2, exceptionally, integerCompletableFuture4, voidCompletableFuture3, voidCompletableFuture4).join();
+        CompletableFuture.allOf(voidCompletableFuture, stringCompletableFuture, integerCompletableFuture1, voidCompletableFuture1, voidCompletableFuture2, exceptionally, integerCompletableFuture4, voidCompletableFuture3, voidCompletableFuture4, voidCompletableFuture5).join();
 
         Void join = voidCompletableFuture.join();
         System.out.println(join);

@@ -1,6 +1,7 @@
 package com.vedha.collections.heaperror;
 
 import org.apache.commons.io.FileUtils;
+import org.openjdk.jol.info.ClassLayout;
 
 public class HeapOutOfMemErrorDemo {
 
@@ -15,6 +16,7 @@ public class HeapOutOfMemErrorDemo {
         System.out.println("total free memory in jvm: " + FileUtils.byteCountToDisplaySize((Runtime.getRuntime().freeMemory() + (Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory()))));
         String[] array = new String[1000000];
 
+        System.out.println("Array Object Size: " + FileUtils.byteCountToDisplaySize(ClassLayout.parseInstance(array).instanceSize()));
         System.out.println("--array created--");
 
         System.out.println("free memory in jvm: " + FileUtils.byteCountToDisplaySize(Runtime.getRuntime().freeMemory()));
@@ -26,6 +28,7 @@ public class HeapOutOfMemErrorDemo {
         // because we are trying to create an array of 10000000 elements
         String[] array2 = new String[10000000];
 
+        System.out.println("Array2 Object Size: " + FileUtils.byteCountToDisplaySize(ClassLayout.parseInstance(array2).instanceSize()));
         System.out.println("--array2 created--");
     }
 }

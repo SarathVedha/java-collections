@@ -1,4 +1,4 @@
-package com.vedha.design;
+package com.vedha.collections.designpattern;
 
 import java.util.function.Consumer;
 

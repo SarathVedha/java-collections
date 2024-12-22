@@ -1,4 +1,4 @@
-package com.vedha.design;
+package com.vedha.collections.threadexecutor;
 
 import java.math.BigInteger;
 import java.time.Duration;

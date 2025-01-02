@@ -55,5 +55,26 @@ public class HashMapStream {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (newValue, oldValue) -> newValue, LinkedHashMap::new));
         System.out.println(descOrder);
+
+        Map<Integer, String> integerStringMap = Map.
+                of(1, "Vedha", 2, "Master", 3, "Theri", 4, "Vijay", 5, "VJS");
+
+        Map<Integer, String> loopFilter = new HashMap<>();
+        for (Map.Entry<Integer, String> entry : integerStringMap.entrySet()) {
+
+            if (!entry.getValue().startsWith("V")) {
+
+                loopFilter.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        System.out.println("loopFilter = " + loopFilter);
+
+        Map<Integer, String> filterStream = integerStringMap.entrySet()
+                .stream()
+                .filter(integerStringEntry -> integerStringEntry.getValue().startsWith("V"))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        System.out.println("filterStream = " + filterStream);
     }
 }
